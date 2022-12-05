@@ -2,9 +2,7 @@
 *.d
 
 # Object files
-*.o
 *.ko
-*.obj
 *.elf
 
 # Linker output
@@ -18,7 +16,6 @@
 
 # Libraries
 *.lib
-*.a
 *.la
 *.lo
 
@@ -42,7 +39,7 @@
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
+Kernel Module Compile Results
 *.mod*
 *.cmd
 .tmp_versions/
