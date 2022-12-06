@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/06 19:29:48 by sdukic           ###   ########.fr       */
+/*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
+/*   Updated: 2022/12/06 20:02:41 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,17 @@
 #include "./include/ft_printf.h"
 #include "./include/pushswap.h"
 
-void	print_stack(t_stack stack)
+t_stack	sort_stack_a(t_stack stack_a)
 {
-	int	i;
+	t_stack	stack_b;
 
-	i = stack.length - 1;
-	while (i >= 0)
-	{
-		ft_printf("%d ", stack.stack[i]);
-		i --;
-	}
-	ft_printf("\n");
-}
+	stack_b = create_stack_b(stack_a.max_length);
+	// stack_a = swap(stack_a);
+	// push(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b);
+	// push(&stack_b, &stack_a);
+	stack_a = rrotate(stack_a);
+	free(stack_b.stack);
 
-int	main(int argc, char *argv[])
-{
-	char	*stack_arg;
-	t_stack	stack_a;
-
-	(void)argc;
-	stack_arg = argv[1];
-	stack_a = create_stack_a(argv, argc);
-	print_stack(stack_a);
-	stack_a = sort_stack_a(stack_a);
-	print_stack(stack_a);
-	free(stack_a.stack);
-	return (0);
+	return (stack_a);
 }

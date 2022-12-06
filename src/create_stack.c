@@ -1,42 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/05 16:37:42 by sdukic            #+#    #+#             */
+/*   Updated: 2022/12/06 18:20:51 by sdukic           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "./include/libft.h"
 #include "./include/ft_printf.h"
+#include "./include/pushswap.h"
 
-static int str_arr_len(char **str_arr)
+static void	populate_stack(t_stack *stack, char **argv)
 {
-    int i;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (str_arr[i])
-    {
-        i++;
-    }
-    return(i);
+	i = stack->length - 1;
+	j = 1;
+	while (i >= 0)
+	{
+		stack->stack[i] = ft_atoi(argv[j]);
+		i--;
+		j++;
+	}
 }
 
-static void populate_stack(int *stack, char **src)
+t_stack	create_stack_a(char **argv, int argc)
 {
-    int i;
+	t_stack	stack_a;
 
-    i = 0;
-    while (src[i])
-    {
-        stack[i] = ft_atoi(src[i]);
-        i++;
-    }
+	stack_a.max_length = argc - 1;
+	stack_a.length = stack_a.max_length;
+	stack_a.stack = ft_calloc(stack_a.max_length, sizeof(int));
+	stack_a.location = 'a';
+	populate_stack(&stack_a, argv);
+	return (stack_a);
 }
 
-int *create_stack(char *stack_arg)
+t_stack	create_stack_b(int max_length)
 {
-    char    **stack_arg_split;
-    int stack_arg_len;
-    int *stack;
+	t_stack	stack_b;
 
-    stack_arg_split = ft_split(stack_arg, ' ');
-    stack_arg_len = str_arr_len(stack_arg_split);
-    stack = ft_calloc(stack_arg_len, sizeof(int));
-    populate_stack(stack, stack_arg_split);
-    free(stack_arg_split);
-    return (stack);
+	stack_b.max_length = max_length;
+	stack_b.length = 0;
+	stack_b.stack = ft_calloc(max_length, sizeof(int));
+	stack_b.location = 'b';
+	return (stack_b);
 }
