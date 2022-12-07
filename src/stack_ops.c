@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:08:29 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/06 20:00:38 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:54:11 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack	swap(t_stack stack)
 	}
 	else
 		perror("Warning in _swap: can't swap because \
-				there are less than 2 elements in stack");
+there are less than 2 elements in stack");
 	return (stack);
 }
 
@@ -66,7 +66,7 @@ t_stack	rotate(t_stack stack)
 	}
 	else
 		perror("Warning in _rotate: can't rotate because \
-				there are less than 2 elements in stack");
+there are less than 2 elements in stack");
 	return (stack);
 }
 
@@ -88,6 +88,6 @@ t_stack	rrotate(t_stack stack)
 	}
 	else
 		perror("Warning in _rotate: can't rotate because \
-				there are less than 2 elements in stack");
+there are less than 2 elements in stack");
 	return (stack);
 }
