@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/06 20:02:28 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/07 15:00:35 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 # include <errno.h>
 # include <string.h>
 
+typedef struct s_chunks
+{
+	int		*chunks;
+	int		length;
+	int		max_length;
+}	t_chunks;
+
 typedef struct s_stack
 {
-	int		*stack;
-	int		length;
-	int		max_length;
-	char	location;
+	int			*stack;
+	int			length;
+	int			max_length;
+	char		location;
+	t_chunks	chunks;
 }	t_stack;
-
-typedef struct s_chunk_stack
-{
-	int		*chunk_stack;
-	int		length;
-	int		max_length;
-	char	location;
-}	t_chunk_stack;
 
 
 //Create stack a from executable arguments.
@@ -53,7 +53,10 @@ void	push(t_stack *stack_src, t_stack *stack_dst);
 t_stack	sort_stack_a(t_stack stack_a);
 
 //Prints all elements from stack from top to bottom.
-void	print_stack(t_stack stack);
+void	print_stack(t_stack stack, char message);
+
+//Prints all elements from chunks from top to bottom.
+void	print_chunks(t_chunks chunks, char message);
 
 //Shift up all elements of the stack by 1.
 //The first element becomes the last one.

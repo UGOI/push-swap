@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:08:29 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/07 13:54:11 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/07 15:27:39 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	push(t_stack *stack_src, t_stack *stack_dst)
 	if (stack_src->length > 0 && stack_dst->length < stack_dst->max_length)
 	{
 		stack_dst->length++;
+		stack_dst->chunks.chunks[stack_dst->chunks.length - 1]++;
 		stack_dst->stack[stack_dst->length - 1]
 			= stack_src->stack[stack_src->length - 1];
-
 		stack_src->length--;
+		stack_src->chunks.chunks[stack_src->chunks.length - 1]--;
 	}
 	else if (stack_dst->length >= stack_dst->max_length)
 	{

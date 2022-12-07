@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/07 13:51:01 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/07 15:08:48 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,44 @@ void	check_input(int argc, char *argv[])
 	}
 }
 
-void	print_stack(t_stack stack)
+void	print_chunks(t_chunks chunks, char message)
 {
 	int	i;
 
+	ft_printf("CHUNKS_%c:	", message);
+	i = chunks.length - 1;
+	while (i >= 0)
+	{
+		ft_printf("%d ", chunks.chunks[i]);
+		i--;
+	}
+	ft_printf("\n");
+}
+
+void	print_stack(t_stack stack, char message)
+{
+	int	i;
+
+	ft_printf("STACK_%c:	", message);
 	i = stack.length - 1;
 	while (i >= 0)
 	{
 		ft_printf("%d ", stack.stack[i]);
-		i --;
+		i--;
 	}
+	ft_printf("\n");
+	print_chunks(stack.chunks, message);
 	ft_printf("\n");
 }
 
 int	main(int argc, char *argv[])
 {
-	char	*stack_arg;
 	t_stack	stack_a;
 
 	check_input(argc, argv);
-	stack_arg = argv[1];
 	stack_a = create_stack_a(argv, argc);
-	print_stack(stack_a);
 	stack_a = sort_stack_a(stack_a);
-	print_stack(stack_a);
 	free(stack_a.stack);
+	free(stack_a.chunks.chunks);
 	return (0);
 }
