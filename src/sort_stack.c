@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 20:00:46 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:29:14 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ int	has_num_to_push(t_stack stack, int num)
 	return (0);
 }
 
-
 void	rotate_to_orig(t_stack *src, int i)
 {
 	if (src->chunks.length > 1)
 		while (i--)
 			*src = rrotate(*src);
 }
-
 
 t_stack create_new_chunk(t_stack dst)
 {
@@ -92,7 +90,6 @@ int	rotate_till_can_push(t_stack *src, int num)
 	return (i);
 }
 
-
 int	push_chunk(t_stack *src, t_stack *dst)
 {
 	int	rotations;
@@ -106,7 +103,9 @@ int	push_chunk(t_stack *src, t_stack *dst)
 		while (has_num_to_push(*src, num))
 		{
 			rotations += rotate_till_can_push(src, num);
-			if (src->stack[src->length - 1] <= num)
+			if (src->stack[src->length - 1] <= num && src->location == 'a')
+				push(src, dst);
+			else if (src->stack[src->length - 1] >= num && src->location == 'b')
 				push(src, dst);
 		}
 		rotate_to_orig(src, rotations);
@@ -138,6 +137,7 @@ t_stack	sort_stack_a(t_stack stack_a)
 	print_stack(stack_b, 'B');
 	ft_printf("\n");
 	push_all(&stack_a, &stack_b);
+	push_all(&stack_b, &stack_a);
 	print_stack(stack_a, 'A');
 	print_stack(stack_b, 'B');
 
