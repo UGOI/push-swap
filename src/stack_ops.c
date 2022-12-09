@@ -6,11 +6,13 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:08:29 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 12:54:52 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:23:44 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/pushswap.h"
+#include "./include/libft.h"
+#include "./include/ft_printf.h"
 
 t_stack	swap(t_stack stack)
 {
@@ -21,6 +23,7 @@ t_stack	swap(t_stack stack)
 		tmp = stack.stack[stack.length - 2];
 		stack.stack[stack.length - 2] = stack.stack[stack.length - 1];
 		stack.stack[stack.length - 1] = tmp;
+		ft_printf("s%c\n", stack.location);
 	}
 	else
 		perror("Warning in _swap: can't swap because \
@@ -40,6 +43,7 @@ void	push(t_stack *stack_src, t_stack *stack_dst)
 		stack_src->chunks.chunks[stack_src->chunks.length - 1]--;
 		if (stack_src->chunks.chunks[stack_src->chunks.length - 1] == 0)
 			stack_src->chunks.length--;
+		ft_printf("p%c\n", stack_dst->location);
 	}
 	else if (stack_dst->length >= stack_dst->max_length)
 	{
@@ -66,6 +70,7 @@ t_stack	rotate(t_stack stack)
 			i--;
 		}
 		stack.stack[0] = tmp;
+		ft_printf("r%c\n", stack.location);
 	}
 	else
 		perror("Warning in _rotate: can't rotate because \
@@ -88,6 +93,7 @@ t_stack	rrotate(t_stack stack)
 			i++;
 		}
 		stack.stack[stack.length - 1] = tmp;
+		ft_printf("rr%c\n", stack.location);
 	}
 	else
 		perror("Warning in _rotate: can't rotate because \
