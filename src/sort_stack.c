@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 20:29:14 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:49:51 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,20 @@ void	push_all(t_stack *src, t_stack *dst)
 	}
 }
 
+int	is_stack_a_sorted_desc(t_stack stack_a)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_a.length - 1)
+	{
+		if (stack_a.stack[i] < stack_a.stack[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 t_stack	sort_stack_a(t_stack stack_a)
 {
 	t_stack	stack_b;
@@ -136,8 +150,11 @@ t_stack	sort_stack_a(t_stack stack_a)
 	print_stack(stack_a, 'A');
 	print_stack(stack_b, 'B');
 	ft_printf("\n");
-	push_all(&stack_a, &stack_b);
-	push_all(&stack_b, &stack_a);
+	while (!is_stack_a_sorted_desc(stack_a))
+	{
+		push_all(&stack_a, &stack_b);
+		push_all(&stack_b, &stack_a);
+	}
 	print_stack(stack_a, 'A');
 	print_stack(stack_b, 'B');
 
