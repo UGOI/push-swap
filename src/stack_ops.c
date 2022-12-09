@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:08:29 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 15:23:44 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/09 17:42:44 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ t_stack	rotate(t_stack stack)
 		stack.stack[0] = tmp;
 		ft_printf("r%c\n", stack.location);
 	}
-	else
-		perror("Warning in _rotate: can't rotate because \
-there are less than 2 elements in stack");
 	return (stack);
 }
 
@@ -95,8 +92,5 @@ t_stack	rrotate(t_stack stack)
 		stack.stack[stack.length - 1] = tmp;
 		ft_printf("rr%c\n", stack.location);
 	}
-	else
-		perror("Warning in _rotate: can't rotate because \
-there are less than 2 elements in stack");
 	return (stack);
 }
