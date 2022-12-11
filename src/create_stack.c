@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:37:42 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 13:06:00 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 14:23:05 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,25 @@ static void	populate_stack(t_stack *stack, char **argv)
 	populate_chunks(&stack->chunks, stack->length);
 }
 
-t_stack	create_stack_a(char **argv, int argc)
+t_stack	create_basic_stack(int max_length)
+{
+	t_stack	stack;
+
+	stack.max_length = max_length;
+	stack.stack = ft_calloc(stack.max_length, sizeof(int));
+	stack.chunks.max_length = stack.max_length;
+	stack.chunks.chunks = ft_calloc(stack.chunks.max_length, sizeof(int));
+	return (stack);
+}
+
+t_stack	create_stack_a(char **argv, int max_length)
 {
 	t_stack	stack_a;
 
-	stack_a.max_length = argc - 1;
-	stack_a.length = stack_a.max_length;
-	stack_a.stack = ft_calloc(stack_a.max_length, sizeof(int));
-	stack_a.location = 'a';
-	stack_a.chunks.max_length = stack_a.max_length;
-	stack_a.chunks.chunks = ft_calloc(stack_a.chunks.max_length, sizeof(int));
+	stack_a = create_basic_stack(max_length);
 	stack_a.chunks.length = 1;
+	stack_a.length = stack_a.max_length;
+	stack_a.location = 'a';
 	populate_stack(&stack_a, argv);
 	return (stack_a);
 }
@@ -56,13 +64,9 @@ t_stack	create_stack_b(int max_length)
 {
 	t_stack	stack_b;
 
-	stack_b.max_length = max_length;
-	stack_b.length = 0;
-	stack_b.stack = ft_calloc(max_length, sizeof(int));
-	stack_b.location = 'b';
-	stack_b.chunks.max_length = stack_b.max_length;
-	stack_b.chunks.chunks = ft_calloc(stack_b.chunks.max_length, sizeof(int));
+	stack_b = create_basic_stack(max_length);
 	stack_b.chunks.length = 0;
-	// populate_chunks(&stack_b.chunks, 0);
+	stack_b.length = 0;
+	stack_b.location = 'b';
 	return (stack_b);
 }

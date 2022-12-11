@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 13:27:32 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 13:42:51 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_stack
 }	t_stack;
 
 //Create stack a from executable arguments.
-t_stack	create_stack_a(char **argv, int argc);
+t_stack	create_stack_a(char **argv, int max_length);
 
 //Create empty stack b. TIPP: Normally give it the size of stack a as argument.
 t_stack	create_stack_b(int max_length);

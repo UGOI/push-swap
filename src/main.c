@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 13:25:16 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 14:07:26 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ int	main(int argc, char *argv[])
 	t_stack	stack_a;
 
 	check_input(argc, argv);
-	stack_a = create_stack_a(argv, argc);
+	stack_a = create_stack_a(argv, argc - 1);
+	print_stack(stack_a, 'A');
 	stack_a = sort_stack(stack_a);
+	print_stack(stack_a, 'A');
 	free(stack_a.stack);
 	free(stack_a.chunks.chunks);
 	return (0);
