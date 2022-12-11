@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/07 15:00:35 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 12:26:02 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	push(t_stack *stack_src, t_stack *stack_dst);
 
 //Sorts stack from lowest (at the top) to biggest (at the bottom).
 //Attention: Bottom is at index 0 and top at the biggest index.
-t_stack	sort_stack_a(t_stack stack_a);
+t_stack	sort_big_stack(t_stack stack_a);
 
 //Prints all elements from stack from top to bottom.
 void	print_stack(t_stack stack, char message);

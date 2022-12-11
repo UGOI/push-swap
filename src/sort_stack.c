@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 20:49:51 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 12:26:02 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int	is_stack_a_sorted_desc(t_stack stack_a)
 	return (1);
 }
 
-t_stack	sort_stack_a(t_stack stack_a)
+t_stack	sort_big_stack(t_stack stack_a)
 {
 	t_stack	stack_b;
 
