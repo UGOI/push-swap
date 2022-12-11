@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 12:26:02 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/11 13:35:46 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,40 @@ int	is_stack_a_sorted_desc(t_stack stack_a)
 	return (1);
 }
 
+t_stack sort_small_stack_desc(t_stack stack_a)
+{
+	t_stack stack_b;
+
+	stack_b = create_stack_b(stack_a.max_length);
+	print_stack(stack_a, 'A');
+	print_stack(stack_b, 'B');
+	if (stack_a.length == 2)
+	{
+		if (stack_a.stack[0] < stack_a.stack[1])
+			stack_a = swap(stack_a);
+	}
+	else if (stack_a.length == 3)
+	{
+		if (stack_a.stack[2] > stack_a.stack[1]
+			&& stack_a.stack[2] > stack_a.stack[0])
+			stack_a = rotate(stack_a);
+		else if (stack_a.stack[1] > stack_a.stack[0])
+			stack_a = rrotate(stack_a);
+		if (stack_a.stack[1] < stack_a.stack[2])
+			stack_a = swap(stack_a);
+	}
+	print_stack(stack_a, 'A');
+	print_stack(stack_b, 'B');
+	free(stack_b.stack);
+	free(stack_b.chunks.chunks);
+	return (stack_a);
+}
+
 t_stack	sort_big_stack(t_stack stack_a)
 {
 	t_stack	stack_b;
 
 	stack_b = create_stack_b(stack_a.max_length);
-
 	print_stack(stack_a, 'A');
 	print_stack(stack_b, 'B');
 	ft_printf("\n");
@@ -157,8 +185,15 @@ t_stack	sort_big_stack(t_stack stack_a)
 	}
 	print_stack(stack_a, 'A');
 	print_stack(stack_b, 'B');
-
 	free(stack_b.stack);
 	free(stack_b.chunks.chunks);
 	return (stack_a);
+}
+
+t_stack	sort_stack(t_stack stack_a)
+{
+	if (stack_a.length <= 3)
+		return (sort_small_stack_desc(stack_a));
+	else
+		return (sort_big_stack(stack_a));
 }
