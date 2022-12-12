@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 14:07:26 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:13:11 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	is_argv_digit(int argc, char *argv[])
 
 void	check_input(int argc, char *argv[])
 {
-	if (is_argv_digit(argc, argv) == 0)
+	if (is_argv_digit(argc, argv) == 0 || argc == 1)
 	{
 		perror("Error: invalid input");
 		exit(1);
@@ -95,6 +95,7 @@ int	main(int argc, char *argv[])
 	stack_a = create_stack_a(argv, argc - 1);
 	print_stack(stack_a, 'A');
 	stack_a = sort_stack(stack_a);
+	// printf("median: %d\n" ,get_median(stack_a));
 	print_stack(stack_a, 'A');
 	free(stack_a.stack);
 	free(stack_a.chunks.chunks);

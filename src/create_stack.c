@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:37:42 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 14:23:05 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:09:00 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 static void	populate_chunks(t_chunks *chunks, int length)
 {
+	if (chunks->max_length == 0)
+		return ;
 	chunks->chunks[0] = length;
 }
 

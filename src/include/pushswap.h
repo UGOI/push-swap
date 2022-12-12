@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 13:42:51 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/12 12:37:08 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ t_stack	rotate(t_stack stack);
 //Shift down all elements of stack a by 1.
 //The last element becomes the first one
 t_stack	rrotate(t_stack stack);
+
+//Returns the median of the stack.
+int		get_median(t_stack stack);
 
 #endif

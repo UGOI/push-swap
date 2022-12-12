@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/11 15:03:03 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/12 13:12:36 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "./include/ft_printf.h"
 #include "./include/pushswap.h"
 
-int	get_median(t_stack stack)
+int	get_middle(t_stack stack)
 {
 	int	res;
 	int	stack_index;
@@ -33,6 +33,48 @@ int	get_median(t_stack stack)
 	stack_index = stack.length - halfed_top_chunk - 1;
 	res = stack.stack[stack_index];
 	return (res);
+}
+
+int	ft_sort_int_tab(int *tab, unsigned int size)
+{
+	unsigned int	i;
+	unsigned int	j;
+	int				tmp;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+			{
+				tmp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	get_median(t_stack stack)
+{
+	int	median;
+	int	*sorted_chunk;
+
+	if (stack.length == 0)
+		return (0);
+	sorted_chunk = malloc(sizeof(int) * stack.chunks.chunks[stack.chunks.length - 1]);
+	if (sorted_chunk == NULL)
+		return (0);
+	ft_memcpy(sorted_chunk, stack.stack + stack.length - stack.chunks.chunks[stack.chunks.length - 1], sizeof(int) * stack.chunks.chunks[stack.chunks.length - 1]);
+	ft_sort_int_tab(sorted_chunk, stack.chunks.chunks[stack.chunks.length - 1]);
+	median = sorted_chunk[stack.chunks.chunks[stack.chunks.length - 1] / 2];
+	free(sorted_chunk);
+	return (median);
 }
 
 int	has_num_to_push(t_stack stack, int num)
