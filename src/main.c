@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/14 19:11:52 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/14 20:21:54 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,49 @@ int	is_str_digit(char *str)
 }
 
 
+void ft_free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
 int	is_argv_int(int argc, char *argv[])
 {
 	int	j;
+	int i;
 
 	j = 1;
 	while (j < argc)
 	{
-		if (is_str_digit(argv[j]) == 0 || ft_latoi(argv[j]) > INT_MAX || ft_latoi(argv[j]) < INT_MIN)
-		{
+		char	**split;
+
+		split = ft_split(argv[j], ' ');
+		if (split == NULL)
 			return (0);
+		i = 0;
+		while (split[i])
+		{
+			if (is_str_digit(split[i]) == 0 || ft_latoi(split[i]) > INT_MAX || ft_latoi(split[i]) < INT_MIN)
+			{
+				ft_free_split(split);
+				return (0);
+			}
+			i++;
 		}
+
+		// if (is_str_digit(argv[j]) == 0 || ft_latoi(argv[j]) > INT_MAX || ft_latoi(argv[j]) < INT_MIN)
+		// {
+		// 	return (0);
+		// }
 		j++;
+		ft_free_split(split);
 	}
 	return (1);
 }
@@ -107,7 +138,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	check_input(argc, argv);
-	stack_a = create_stack_a(argv, argc - 1);
+	stack_a = create_stack_a(argv, argc);
 	// print_stack(stack_a, 'A');
 	stack_a = sort_stack(stack_a);
 	// printf("median: %d\n" ,get_median(stack_a));
