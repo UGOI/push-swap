@@ -6,15 +6,25 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/14 18:01:03 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/14 19:11:52 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "./include/libft.h"
 #include "./include/ft_printf.h"
 #include "./include/pushswap.h"
+
+void errprintf(char *str)
+{
+	while (*str)
+	{
+		write(2, str, 1);
+		str++;
+	}
+}
 
 int	is_str_digit(char *str)
 {
@@ -32,14 +42,15 @@ int	is_str_digit(char *str)
 	return (1);
 }
 
-int	is_argv_digit(int argc, char *argv[])
+
+int	is_argv_int(int argc, char *argv[])
 {
 	int	j;
 
 	j = 1;
 	while (j < argc)
 	{
-		if (is_str_digit(argv[j]) == 0)
+		if (is_str_digit(argv[j]) == 0 || ft_latoi(argv[j]) > INT_MAX || ft_latoi(argv[j]) < INT_MIN)
 		{
 			return (0);
 		}
@@ -50,9 +61,9 @@ int	is_argv_digit(int argc, char *argv[])
 
 void	check_input(int argc, char *argv[])
 {
-	if (is_argv_digit(argc, argv) == 0 || argc == 1)
+	if (is_argv_int(argc, argv) == 0 || argc == 1)
 	{
-		perror("Error: invalid input");
+		errprintf("Error\n");
 		exit(1);
 	}
 }
@@ -91,12 +102,16 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 
+	if (argc == 1)
+	{
+		return (0);
+	}
 	check_input(argc, argv);
 	stack_a = create_stack_a(argv, argc - 1);
-	print_stack(stack_a, 'A');
+	// print_stack(stack_a, 'A');
 	stack_a = sort_stack(stack_a);
 	// printf("median: %d\n" ,get_median(stack_a));
-	print_stack(stack_a, 'A');
+	// print_stack(stack_a, 'A');
 	free(stack_a.stack);
 	free(stack_a.chunks.chunks);
 	return (0);
