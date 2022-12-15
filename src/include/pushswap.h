@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/15 13:12:01 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/15 22:02:09 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,51 @@ int		get_median(t_stack stack);
 void	ft_free_split(char **split);
 
 //Returns the maximum length of the stack.
-int	get_max_stack_length(char **argv, int argc);
+int		get_max_stack_length(char **argv, int argc);
+
+//Priints error message to stderr.
+void	errprintf(char *str);
+
+int		is_str_digit(char *str);
+
+int		is_converted_int(char **converted_input);
+
+int		has_duplicates(char **convert_input);
+
+void	check_input(char **converted_input);
+
+char	**convert_input(int argc, char *argv[]);
+
+void	errprintf(char *str);
+
+void	populate_chunk(t_chunks *chunks, int length);
+
+void	populate_stack(t_stack *stack, char **argv, int argc);
+
+int		get_max_stack_length(char **argv, int argc);
+
+int		ft_sort_int_tab(int *tab, unsigned int size);
+
+int		get_median(t_stack stack);
+
+int		has_num_to_push(t_stack stack, int num);
+
+int		is_stack_sorted(t_stack stack);
+
+int		get_amount_of_numbers_for_next_chunk(t_stack stack, int median);
+
+t_stack	create_new_chunk(t_stack dst);
+
+int		rotate_till_can_push(t_stack *src, int num);
+
+void	rotate_back(t_stack *src, int i);
+
+int		has_num_to_push(t_stack stack, int num);
+
+t_stack	sort_duo_chunk(t_stack stack);
+
+void	push_chunk(t_stack *src, t_stack *dst);
+
+t_stack	sort_small_stack_desc(t_stack stack_a);
 
 #endif

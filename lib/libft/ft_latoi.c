@@ -15,8 +15,8 @@
 long	ft_latoi(const char *str)
 {
 	long						i;
-	unsigned long long int	sign;
-	unsigned long long int	num;
+	unsigned long long int		sign;
+	unsigned long long int		num;
 
 	i = 0;
 	sign = 1;
