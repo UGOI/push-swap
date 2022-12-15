@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/15 16:03:22 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/15 17:32:28 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,9 @@ void	push_chunk(t_stack *src, t_stack *dst)
 {
 	int	amount_of_numbers_for_next_chunk;
 	int	median;
+	int rotations;
 
+	rotations = 0;
 	median = get_median(*src);
 	amount_of_numbers_for_next_chunk = get_amount_of_numbers_for_next_chunk(*src, median);
 	if (src->chunks.chunks[src->chunks.length - 1] == 2)
@@ -240,11 +242,13 @@ void	push_chunk(t_stack *src, t_stack *dst)
 		else
 		{
 
-			rotate_till_can_push(src, median);
+			rotations += rotate_till_can_push(src, median);
 			push(src, dst);
 			amount_of_numbers_for_next_chunk--;
 		}
 	}
+	if (src->chunks.length > 1)
+		rotate_back(src, rotations);
 	return ;
 }
 
@@ -253,7 +257,7 @@ void	push_stack(t_stack *src, t_stack *dst)
 	while (!is_stack_sorted(*src))
 	{
 		push_chunk(src, dst);
-		printf("\n");
+		// printf("\n");
 	}
 	if (dst->location == 'a' && is_stack_sorted(*src) && is_stack_sorted(*dst))
 	{
@@ -270,11 +274,11 @@ t_stack	sort_big_stack(t_stack stack_a)
 	while (!is_stack_sorted(stack_a))
 	{
 		push_stack(&stack_a, &stack_b);
-		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
+		// print_stack(stack_a, 'A');
+		// print_stack(stack_b, 'B');
 		push_stack(&stack_b, &stack_a);
-		print_stack(stack_a, 'A');
-		print_stack(stack_b, 'B');
+		// print_stack(stack_a, 'A');
+		// print_stack(stack_b, 'B');
 	}
 	// print_stack(stack_b, 'B');
 	free(stack_b.stack);
