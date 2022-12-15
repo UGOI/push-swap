@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:40:07 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/14 20:21:54 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/15 14:44:45 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,43 +56,47 @@ void ft_free_split(char **split)
 	free(split);
 }
 
-int	is_argv_int(int argc, char *argv[])
+int	is_converted_int(char **converted_input)
 {
-	int	j;
-	int i;
+	int	i;
 
-	j = 1;
-	while (j < argc)
+	i = 0;
+	while (converted_input[i])
 	{
-		char	**split;
-
-		split = ft_split(argv[j], ' ');
-		if (split == NULL)
-			return (0);
-		i = 0;
-		while (split[i])
+		if (is_str_digit(converted_input[i]) == 0 || ft_latoi(converted_input[i]) > INT_MAX || ft_latoi(converted_input[i]) < INT_MIN)
 		{
-			if (is_str_digit(split[i]) == 0 || ft_latoi(split[i]) > INT_MAX || ft_latoi(split[i]) < INT_MIN)
-			{
-				ft_free_split(split);
-				return (0);
-			}
-			i++;
+			return (0);
 		}
-
-		// if (is_str_digit(argv[j]) == 0 || ft_latoi(argv[j]) > INT_MAX || ft_latoi(argv[j]) < INT_MIN)
-		// {
-		// 	return (0);
-		// }
-		j++;
-		ft_free_split(split);
+		i++;
 	}
 	return (1);
 }
 
-void	check_input(int argc, char *argv[])
+int	has_duplicates(char **convert_input)
 {
-	if (is_argv_int(argc, argv) == 0 || argc == 1)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (convert_input[i])
+	{
+		j = i + 1;
+		while (convert_input[j])
+		{
+			if (ft_latoi(convert_input[i]) == ft_latoi(convert_input[j]))
+			{
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	check_input(char **converted_input)
+{
+	if (is_converted_int(converted_input) == 0 || has_duplicates(converted_input) == 1)
 	{
 		errprintf("Error\n");
 		exit(1);
@@ -129,15 +133,62 @@ void	print_stack(t_stack stack, char message)
 	ft_printf("\n");
 }
 
+
+char	**convert_input(int argc, char *argv[])
+{
+	char	**converted_input;
+	int	i;
+	int	j;
+	int	k;
+
+	converted_input = malloc(sizeof(char *) * (get_max_stack_length(argv, argc) + 1));
+	if (converted_input == NULL)
+		return (NULL);
+	i = 1;
+	j = 0;
+	while (i < argc)
+	{
+		char	**split;
+
+		split = ft_split(argv[i], ' ');
+		if (split == NULL)
+			return (NULL);
+		k = 0;
+		while (split[k])
+		{
+			converted_input[j] = ft_strdup(split[k]);
+			if (converted_input[j] == NULL)
+				return (NULL);
+			j++;
+			k++;
+		}
+		i++;
+		ft_free_split(split);
+	}
+	converted_input[j] = NULL;
+	return (converted_input);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
+	char	**converted_input;
+	int	i;
 
 	if (argc == 1)
 	{
 		return (0);
 	}
-	check_input(argc, argv);
+	converted_input = convert_input(argc, argv);
+	if (converted_input == NULL)
+		return (1);
+	i = 0;
+	// while(converted_input[i])
+	// {
+	// 	printf("converted_input: %s\n", converted_input[i]);
+	// 	i++;
+	// }
+	check_input(converted_input);
 	stack_a = create_stack_a(argv, argc);
 	// print_stack(stack_a, 'A');
 	stack_a = sort_stack(stack_a);
@@ -145,5 +196,6 @@ int	main(int argc, char *argv[])
 	// print_stack(stack_a, 'A');
 	free(stack_a.stack);
 	free(stack_a.chunks.chunks);
+	ft_free_split(converted_input);
 	return (0);
 }

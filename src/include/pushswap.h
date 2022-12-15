@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/14 20:47:49 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/15 13:12:01 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ int		get_median(t_stack stack);
 
 //Free the memory of split.
 void	ft_free_split(char **split);
+
+//Returns the maximum length of the stack.
+int	get_max_stack_length(char **argv, int argc);
 
 #endif

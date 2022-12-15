@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:09:56 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/14 17:56:50 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/15 16:03:22 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,18 +210,19 @@ void	push_chunk(t_stack *src, t_stack *dst)
 
 	median = get_median(*src);
 	amount_of_numbers_for_next_chunk = get_amount_of_numbers_for_next_chunk(*src, median);
-	if (amount_of_numbers_for_next_chunk != 0 && src->chunks.chunks[src->chunks.length - 1] != 2)
-		*dst = create_new_chunk(*dst);
 	if (src->chunks.chunks[src->chunks.length - 1] == 2)
 	{
 		*src = sort_duo_chunk(*src);
 		if (!is_stack_sorted(*src))
 		{
+			*dst = create_new_chunk(*dst);
 			push(src, dst);
 			push(src, dst);
 		}
 		return ;
 	}
+	if (amount_of_numbers_for_next_chunk != 0 && src->chunks.chunks[src->chunks.length - 1] != 2)
+		*dst = create_new_chunk(*dst);
 	while (amount_of_numbers_for_next_chunk > 0 && src->chunks.chunks[src->chunks.length - 1] != 2)
 	{
 		if (src->stack[0] < median && src->location == 'a')
@@ -252,6 +253,7 @@ void	push_stack(t_stack *src, t_stack *dst)
 	while (!is_stack_sorted(*src))
 	{
 		push_chunk(src, dst);
+		printf("\n");
 	}
 	if (dst->location == 'a' && is_stack_sorted(*src) && is_stack_sorted(*dst))
 	{
@@ -268,9 +270,13 @@ t_stack	sort_big_stack(t_stack stack_a)
 	while (!is_stack_sorted(stack_a))
 	{
 		push_stack(&stack_a, &stack_b);
+		print_stack(stack_a, 'A');
+		print_stack(stack_b, 'B');
 		push_stack(&stack_b, &stack_a);
+		print_stack(stack_a, 'A');
+		print_stack(stack_b, 'B');
 	}
-	print_stack(stack_b, 'B');
+	// print_stack(stack_b, 'B');
 	free(stack_b.stack);
 	free(stack_b.chunks.chunks);
 	return (stack_a);

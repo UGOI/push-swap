@@ -8,7 +8,7 @@ CXXFLAGS = -std=c11 -Wall -Wextra -Werror -g -fsanitize=address
 LDFLAGS =
 
 # Makefile settings - Can be customized.
-APPNAME = pushswap
+APPNAME = push_swap
 EXT = .c
 LIBEXT = .a
 SRCDIR = src
