@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 21:56:08 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/15 23:48:09 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/16 15:22:57 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	push_chunk(t_stack *src, t_stack *dst)
 {
 	int	amount_of_numbers_for_next_chunk;
 	int	median;
-	int	rotations;
 
-	rotations = 0;
 	median = get_median(*src);
 	amount_of_numbers_for_next_chunk
 		= get_amount_of_numbers_for_next_chunk(*src, median);
