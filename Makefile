@@ -13,7 +13,7 @@ LIBDIR = lib/libft
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
 OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
 
-RM = rm
+RM = rm -f
 DELOBJ = $(OBJ)
 
 all: lib $(APPNAME)
