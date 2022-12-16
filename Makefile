@@ -24,6 +24,7 @@ $(APPNAME): $(OBJ)
 
 # Building rule for .o files and its .c
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
+	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 # Rules
