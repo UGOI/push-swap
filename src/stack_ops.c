@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:08:29 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/09 17:42:44 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:08:44 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stack	swap(t_stack stack)
 		ft_printf("s%c\n", stack.location);
 	}
 	else
-		perror("Warning in _swap: can't swap because \
+		errprintf("Warning in _swap: can't swap because \
 there are less than 2 elements in stack");
 	return (stack);
 }
@@ -47,11 +47,11 @@ void	push(t_stack *stack_src, t_stack *stack_dst)
 	}
 	else if (stack_dst->length >= stack_dst->max_length)
 	{
-		perror("Warning in _push: stack alredy full");
+		errprintf("Warning in _push: stack alredy full");
 	}
 	else if (stack_src->length <= 0)
 	{
-		perror("Warning in _push: nothing to push");
+		errprintf("Warning in _push: nothing to push");
 	}
 }
 

@@ -6,15 +6,12 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:40:18 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/15 22:02:09 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:10:15 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
-# include <stdio.h>
-# include <errno.h>
-# include <string.h>
 
 typedef struct s_chunks
 {

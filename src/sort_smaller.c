@@ -6,12 +6,10 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 22:01:23 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/15 23:48:55 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:14:16 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "./include/libft.h"
 #include "./include/ft_printf.h"
 #include "./include/pushswap.h"
