@@ -6,7 +6,7 @@
 /*   By: sdukic <sdukic@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 19:26:49 by sdukic            #+#    #+#             */
-/*   Updated: 2022/12/16 17:12:20 by sdukic           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:59:03 by sdukic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_str_digit(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if ((str[i] == '-' || str[i] == '+') && str[i + 1])
 		i++;
 	while (str[i])
 	{
@@ -43,7 +43,8 @@ int	is_converted_int(char **converted_input)
 	{
 		if (is_str_digit(converted_input[i]) == 0
 			|| ft_latoi(converted_input[i]) > INT_MAX
-			|| ft_latoi(converted_input[i]) < INT_MIN)
+			|| ft_latoi(converted_input[i]) < INT_MIN
+			|| ft_strlen(converted_input[i]) > 11)
 		{
 			return (0);
 		}
